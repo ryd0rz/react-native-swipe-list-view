@@ -210,15 +210,19 @@ class SwipeRow extends Component {
 			this.ensureScrollEnabled()
 			if (toValue === 0) {
 				this.props.onRowDidClose && this.props.onRowDidClose();
+				this.props.onRowDidCloseCb && this.props.onRowDidCloseCb();
 			} else {
 				this.props.onRowDidOpen && this.props.onRowDidOpen();
+				this.props.onRowDidOpenCb && this.props.onRowDidOpenCb();
 			}
 		});
 
 		if (toValue === 0) {
 			this.props.onRowClose && this.props.onRowClose();
+			this.props.onRowCloseCb && this.props.onRowCloseCb();
 		} else {
 			this.props.onRowOpen && this.props.onRowOpen(toValue);
+			this.props.onRowOpenCb && this.props.onRowOpenCb(toValue);
 		}
 
 		// reset everything
@@ -345,6 +349,14 @@ SwipeRow.propTypes = {
 	 */
 	onRowDidOpen: PropTypes.func,
 	/**
+	 * Called when a swipe row is animating open. Cb to swipe row
+	 */
+	onRowOpenCb: PropTypes.func,
+	/**
+	 * Called when a swipe row has animated open. - Cb to swipe row
+	 */
+	onRowDidOpenCb: PropTypes.func,
+	/**
 	 * TranslateX value for opening the row to the left (positive number)
 	 */
 	leftOpenValue: PropTypes.number,
@@ -392,6 +404,14 @@ SwipeRow.propTypes = {
 	 * Called when a swipe row has animated closed
 	 */
 	onRowDidClose: PropTypes.func,
+	/**
+	 * Called when a swipe row is animating closed - CB to swipe row
+	 */
+	onRowCloseCb: PropTypes.func,
+	/**
+	 * Called when a swipe row has animated closed - CB to swipe row
+	 */
+	onRowDidCloseCb: PropTypes.func,
 	/**
 	 * Styles for the parent wrapper View of the SwipeRow
 	 */
